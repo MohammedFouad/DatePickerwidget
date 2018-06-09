@@ -14,7 +14,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:background="@drawable/ic_baseline_laptop_windows_24px"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -40,4 +42,53 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.203"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePicker">
+
+        <RadioButton
+            android:id="@+id/firstLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="level 1"
+           />
+
+        <RadioButton
+            android:id="@+id/secondLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="level " />
+
+        <RadioButton
+            android:id="@+id/thirdLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="level 3" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="choose"
+            android:id="@+id/checkRadioButton"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/showSelection"
+            android:hint="selection"/>
+
+    </RadioGroup>
+
+
 </android.support.constraint.ConstraintLayout>

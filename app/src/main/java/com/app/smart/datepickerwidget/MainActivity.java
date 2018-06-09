@@ -4,8 +4,13 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,12 +22,39 @@ public class MainActivity extends AppCompatActivity {
     DatePickerDialog datePickerDialog;
     private int year, month, day;
     TextView dateView;
+    customToast toastdata;
+    Toast toast;
+    TextView text,selectedRadioButton;
 
+    Button confirm;
+
+    RadioGroup radioGroup;
+    RadioButton firstLevel, secondLevel, thirdLevel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        selectedRadioButton = findViewById(R.id.showSelection);
+
+        confirm = findViewById(R.id.checkRadioButton);
+
+        radioGroup = findViewById(R.id.radioGroup);
+
+        firstLevel = findViewById(R.id.firstLevel);
+        secondLevel = findViewById(R.id.secondLevel);
+        thirdLevel = findViewById(R.id.thirdLevel);
+
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.activity_custom_toast,
+                (ViewGroup) findViewById(R.id.relativeLayout1));
+
+       text = findViewById(R.id.textView1);
+
+        toast = new Toast(this);
+        toast.setView(view);
+     //   text.setText("your score is good");
+       // toast.show();
         dateView = findViewById(R.id.textView3);
         final Calendar c = Calendar.getInstance();
         year = c.get(Calendar.YEAR);
@@ -34,14 +66,20 @@ public class MainActivity extends AppCompatActivity {
 
         showDate(year, month + 1, day);
 
+        show();
+
     }
 
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
         showDialog(999);
-        Toast.makeText(getApplicationContext(), "ca",
-                Toast.LENGTH_SHORT)
-                .show();
+
+        toast.show();
+
+
+        //Toast.makeText(getApplicationContext(), "",
+//                Toast.LENGTH_SHORT)
+//                .show();
     }
 
     @Override
@@ -71,5 +109,31 @@ public class MainActivity extends AppCompatActivity {
     private void showDate(int year1, int month1, int day1) {
         dateView.setText(new StringBuilder().append(day1).append("/")
                 .append(month1).append("/").append(year1));
+    }
+
+    public void show(){
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+
+                if (selectedId==firstLevel.getId()){
+                    selectedRadioButton.setText("first level is selcted");
+                    selectedRadioButton.setTextColor(getResources().getColor(R.color.colorAccent));
+                }
+                if (selectedId==secondLevel.getId()){
+                    selectedRadioButton.setText("second level is selcted");
+                    selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
+                }
+                if (selectedId==thirdLevel.getId()){
+                    selectedRadioButton.setText("third level is selcted");
+                    selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                }
+
+
+            }
+        });
+
     }
 }
